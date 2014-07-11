@@ -1,4 +1,4 @@
-# Go-Environ [![GoDoc](https://godoc.org/github.com/codehack/go-environ?status.png)](https://godoc.org/github.com/codehack/go-environ)
+# Go-Environ [![GoDoc](https://godoc.org/github.com/codehack/go-environ?status.svg)](https://godoc.org/github.com/codehack/go-environ)
 
 *Unix-like environment variable functions in [Go](http://golang.org)*
 

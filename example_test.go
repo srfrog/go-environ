@@ -5,8 +5,8 @@
 package environ_test
 
 import (
-	"."
 	"fmt"
+	"github.com/codehack/go-environ"
 )
 
 var testEnv = environ.NewEnv()
