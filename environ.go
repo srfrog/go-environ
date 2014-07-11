@@ -109,10 +109,14 @@ func (e *Env) Set(name string, v interface{}) error {
 		value = strconv.FormatBool(v.(bool))
 	case byte:
 		value = string(v.(byte))
-	case uint, uint32, uint64:
+	case uint, uint32:
 		value = strconv.FormatUint(uint64(v.(uint)), 10)
-	case int, int32, int64:
+	case uint64:
+		value = strconv.FormatUint(v.(uint64), 10)
+	case int, int32:
 		value = strconv.FormatInt(int64(v.(int)), 10)
+	case int64:
+		value = strconv.FormatInt(v.(int64), 10)
 	case float32, float64:
 		value = strconv.FormatFloat(v.(float64), 'f', -1, 64)
 	case string:
