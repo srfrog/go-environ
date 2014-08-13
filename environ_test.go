@@ -5,6 +5,7 @@
 package environ
 
 import "testing"
+import "time"
 
 var testEnv = NewEnv()
 var arr = []string{"Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "donec", "tempus", "Lorem"}
@@ -53,6 +54,7 @@ func TestSet(t *testing.T) {
 	testEnv.Set("ipsum", 123)
 	testEnv.Set("dolor", true)
 	testEnv.Set("sit", fake{})
+	testEnv.Set("date", time.Time{})
 
 	if e, v := 1.01, testEnv.GetFloat("Lorem"); e != v {
 		t.Errorf("expecting %q got %q", e, v)
@@ -64,6 +66,12 @@ func TestSet(t *testing.T) {
 		t.Errorf("expecting %q got %q", e, v)
 	}
 	if e, v := "sit", testEnv.Get("sit"); e != v {
+		t.Errorf("expecting %q got %q", e, v)
+	}
+	if e, v := "0001-01-01 00:00:00 +0000 UTC", testEnv.Get("date"); e != v {
+		t.Errorf("expecting %q got %q", e, v)
+	}
+	if e, v := new(time.Time), testEnv.GetTime("date"); !e.Equal(v) {
 		t.Errorf("expecting %q got %q", e, v)
 	}
 }
