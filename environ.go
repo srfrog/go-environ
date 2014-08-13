@@ -121,6 +121,8 @@ func (e *Env) Set(name string, v interface{}) error {
 		value = strconv.FormatFloat(v.(float64), 'f', -1, 64)
 	case string:
 		value = v.(string)
+	case fmt.Stringer:
+		value = v.(fmt.Stringer).String()
 	default:
 		t := reflect.TypeOf(v)
 		return errors.New("environ.Set: " + name + ": value " + strconv.Quote(t.String()) + " is not supported")
