@@ -90,7 +90,8 @@ func (e *Env) GetInt(name string) int {
 
 // Get returns the time.Time value matching name in Env e, or time.Time{} if not
 // found or the value is not a time.Time. The parsing is done using format:
-// "2006-01-02 15:04:05.999999999 -0700 MST", which is a variation on RFC3339Nano.
+// "2006-01-02 15:04:05.999999999 -0700 MST", which is a variation on time.RFC3339Nano.
+// The returned value should be checked with time.IsZero()
 func (e *Env) GetTime(name string) time.Time {
 	v, err := time.Parse("2006-01-02 15:04:05.999999999 -0700 MST", e.Get(name))
 	if err != nil {
