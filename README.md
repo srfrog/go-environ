@@ -27,7 +27,7 @@ The full code documentation is located at GoDoc:
 
 [http://godoc.org/github.com/codehack/go-environ](http://godoc.org/github.com/codehack/go-environ)
 
-**Go-Environ** is Copyright (c) 2014 [Codehack](http://codehack.com).
+**Go-Environ** is Copyright (c) 2014-present [Codehack](http://codehack.com).
 Published under [MIT License](https://raw.githubusercontent.com/codehack/go-environ/master/LICENSE)
 
 

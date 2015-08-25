@@ -1,10 +1,8 @@
-// Copyright 2014 Codehack.com All rights reserved.
+// Copyright 2014-present Codehack. All rights reserved.
+// For mobile and web development visit http://codehack.com
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-// Package environ is a system to implement the similar functionality as environment
-// lists found in all Unix-based OS'. Basically, all the functions found at
-// "man 3 setenv" from a Unix prompt. With some additions to support Go's basic types.
 package environ
 
 import (
@@ -36,9 +34,9 @@ func (e *Env) Free() { envPool.Put(e) }
 // -1 otherwise.
 func (e *Env) Index(name string) int {
 	prefix := name + "="
-	for k, v := range *e {
-		if strings.HasPrefix(v, prefix) {
-			return k
+	for i := range *e {
+		if strings.HasPrefix((*e)[i], prefix) {
+			return i
 		}
 	}
 	return -1
@@ -58,7 +56,7 @@ func (e *Env) Get(name string) string {
 	return (*e)[idx][len(name)+1:]
 }
 
-// Get returns the bool value matching name in Env e, or false if not found or the
+// GetBool returns the bool value matching name in Env e, or false if not found or the
 // value is not a boolean.
 func (e *Env) GetBool(name string) bool {
 	v, err := strconv.ParseBool(e.Get(name))
@@ -68,7 +66,7 @@ func (e *Env) GetBool(name string) bool {
 	return v
 }
 
-// Get returns the float value matching name in Env e, or 0 if not found or the
+// GetFloat returns the float value matching name in Env e, or 0 if not found or the
 // value is not a float.
 func (e *Env) GetFloat(name string) float64 {
 	v, err := strconv.ParseFloat(e.Get(name), 0)
@@ -78,7 +76,7 @@ func (e *Env) GetFloat(name string) float64 {
 	return v
 }
 
-// Get returns the int value matching name in Env e, or 0 if not found or the
+// GetInt returns the int value matching name in Env e, or 0 if not found or the
 // value is not an int.
 func (e *Env) GetInt(name string) int {
 	v, err := strconv.Atoi(e.Get(name))
@@ -88,7 +86,7 @@ func (e *Env) GetInt(name string) int {
 	return v
 }
 
-// Get returns the time.Time value matching name in Env e, or time.Time{} if not
+// GetTime returns the time.Time value matching name in Env e, or time.Time{} if not
 // found or the value is not a time.Time. The parsing is done using format:
 // "2006-01-02 15:04:05.999999999 -0700 MST", which is a variation on time.RFC3339Nano.
 // The returned value should be checked with time.IsZero()
